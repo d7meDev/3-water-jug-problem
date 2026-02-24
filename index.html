@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Water Jug Problem</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div class="jug">
+            <p><span id="volume-8L">0</span></p>
+            <div id="L8" class="water-area">
+
+                <div class="water"></div>
+
+            </div>
+            <div class="controls">
+                <button onclick="fill(8)">Fill</button>
+                <button onclick="empty(8)" >Empty</button>
+                <button onclick="pour(8,5)">Pour 5L</button>
+                <button onclick="pour(8,3)">Pour 3L</button>
+            </div>
+        </div>
+
+
+         <div class="jug">
+            <p><span id="volume-5L">0</span></p>
+            <div id="L5" class="water-area">
+                <div class="water"></div>
+            </div>
+            <div class="controls">
+                <button onclick="fill(5)">Fill</button>
+                <button onclick="empty(5)">Empty</button>
+                <button onclick="pour(5,8)">Pour 8L</button>
+                <button onclick="pour(5,3)">Pour 3L</button>
+            </div>
+        </div>
+
+
+         <div class="jug">
+            <p><span id="volume-3L">0</span></p>
+            <div id="L3" class="water-area">
+                <div class="water"></div>
+            </div>
+            <div class="controls">
+                <button onclick="fill(3)">Fill</button>
+                <button onclick="empty(3)">Empty</button>
+                <button onclick="pour(3,8)">Pour 8L</button>
+                <button onclick="pour(3,5)">Pour 5L</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./index.js"></script>
+
+</body>
+</html>
