@@ -51,7 +51,7 @@ function pour(jugSizeX,jugSizeY){
     let jugY;
 
     if(jugSizeX === jugSizeY){
-        return; // this is invalid state
+        return; 
     }
 
     if(jugSizeX === 8){
@@ -94,7 +94,7 @@ function pour(jugSizeX,jugSizeY){
 
 
     if(jugSizeX === jugSizeY){
-        return; // this is invalid state
+        return; 
     }
 
     if(jugSizeX === 8){
