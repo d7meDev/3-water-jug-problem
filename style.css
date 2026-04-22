@@ -110,7 +110,7 @@ button:active {
     padding: 10px;
 
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     color: white;
 }
 

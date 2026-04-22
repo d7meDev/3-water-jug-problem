@@ -223,6 +223,71 @@ function bfs(startState) {
     return null;
 }
 
+
+function heuristic(state) {
+    return Math.min(
+        Math.abs(state[0] - 4),
+        Math.abs(state[1] - 4),
+        Math.abs(state[2] - 4)
+    );
+}
+
+function aStar(startState) {
+    const open = [];
+    const bestG = new Map();
+
+    const startKey = stateKey(startState);
+
+    open.push({
+        state: startState,
+        path: [],
+        g: 0,
+        h: heuristic(startState),
+        f: heuristic(startState)
+    });
+
+    bestG.set(startKey, 0);
+
+    while (open.length > 0) {
+        open.sort((a, b) => a.f - b.f);
+
+        const current = open.shift();
+        const currentKey = stateKey(current.state);
+
+        if (current.g > bestG.get(currentKey)) {
+            continue;
+        }
+
+        if (isGoal(current.state)) {
+            return current.path;
+        }
+
+        const nextStates = getNextStates(current.state);
+
+        for (const next of nextStates) {
+            const nextKey = stateKey(next.state);
+            const nextG = current.g + 1;
+
+            if (!bestG.has(nextKey) || nextG < bestG.get(nextKey)) {
+                const nextH = heuristic(next.state);
+
+                bestG.set(nextKey, nextG);
+
+                open.push({
+                    state: next.state,
+                    path: [...current.path, next.action],
+                    g: nextG,
+                    h: nextH,
+                    f: nextG + nextH
+                });
+            }
+        }
+    }
+
+    return null;
+}
+
+
 function applyActionToJugs(action) {
     if (action.type === "fill") {
         jugs[action.x].currentValue = jugs[action.x].maxValue;
@@ -321,6 +386,16 @@ function playBFS(){
     applyState(startState);
 
     const solutionActions = bfs(startState);
+    playSolutionActions(solutionActions, 1200);
+
+}
+
+function playAStar(){
+
+    const startState = [0, 0, 0];
+    applyState(startState);
+
+    const solutionActions = aStar(startState);
     playSolutionActions(solutionActions, 1200);
 
 }
