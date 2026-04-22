@@ -1,6 +1,4 @@
 
-function play() {  
-
 
 
 
@@ -148,6 +146,47 @@ function getNextStates(state) {
     return nextStates;
 }
 
+function dfs(startState) {
+    const visited = new Set();
+    const stack = [];
+
+    stack.push({
+        state: startState,
+        path: []
+    });
+
+    while (stack.length > 0) {
+        const current = stack.pop();
+        const key = stateKey(current.state);
+
+        if (visited.has(key)) {
+            continue;
+        }
+
+        visited.add(key);
+
+        if (isGoal(current.state)) {
+            return current.path;
+        }
+
+        const nextStates = getNextStates(current.state);
+
+        for (let i = nextStates.length - 1; i >= 0; i--) {
+            const next = nextStates[i];
+            const nextKey = stateKey(next.state);
+
+            if (!visited.has(nextKey)) {
+                stack.push({
+                    state: next.state,
+                    path: [...current.path, next.action]
+                });
+            }
+        }
+    }
+
+    return null;
+}
+
 function bfs(startState) {
     const visited = new Set();
     const queue = [];
@@ -266,10 +305,24 @@ function playSolutionActions(actions, delay = 1500) {
 }
 
 
-const startState = [0, 0, 0];
-applyState(startState);
+function playDFS(){
 
-const solutionActions = bfs(startState);
-playSolutionActions(solutionActions, 1200);
+    const startState = [0, 0, 0];
+    applyState(startState);
+
+    const solutionActions = dfs(startState);
+    playSolutionActions(solutionActions, 1200);
 
 }
+
+function playBFS(){
+
+    const startState = [0, 0, 0];
+    applyState(startState);
+
+    const solutionActions = bfs(startState);
+    playSolutionActions(solutionActions, 1200);
+
+}
+
+

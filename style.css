@@ -77,7 +77,20 @@ button:active {
     transform: translateY(0);
 }
 
-#start-button {
+.container-m{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+    
+}
+
+.start-button {
     display: block;
     margin: 20px auto 0 auto;
 }
@@ -97,6 +110,7 @@ button:active {
     padding: 10px;
 
     overflow: hidden;
+    overflow-y: scroll;
     color: white;
 }
 
